@@ -1,0 +1,7 @@
+// Programa invalido: falta el punto y coma tras la asignacion.
+// (Ejemplo inválido #2 del contrato del lenguaje)
+
+va pisto contador;
+
+contador = 5
+shute(contador);
