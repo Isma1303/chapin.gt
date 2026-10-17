@@ -1,2 +1,6 @@
-.Assets
+.DS_Store
 Assets/
+build/
+chapin
+chapin.dSYM/
+nova.nova
