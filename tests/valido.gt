@@ -1,0 +1,25 @@
+/* Programa demostrativo: Chapin
+   Cuenta vueltas de brega y clasifica el resultado */
+
+va pisto contador = 0;
+va pisto limite;
+va quetzal promedio = 0.0;
+
+aguas "¿Hasta qué número quieres bregar?";
+clavar(limite);
+
+brega (contador < limite) {
+    shute("Vuelta: " + contador);
+    promedio = promedio + contador;
+    contador = contador + 1;
+}
+
+promedio = promedio / limite;
+
+cabal (promedio > 5) {
+    shute("Promedio alto, quedó cabal: " + promedio);
+} sino {
+    shute("Promedio bajo: " + promedio);
+}
+
+// Fin del programa
