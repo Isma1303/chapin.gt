@@ -43,13 +43,13 @@ int main(int argc, char **argv) {
     tabla_imprimir();
 
     printf("\n=== Traduccion a Nova ===\n\n");
-    if (traducir_a_nova(raiz_ast, "nova.nova") != 0) {
-        perror("No se pudo generar nova.nova");
+    if (traducir_a_nova(raiz_ast, "nova.nov") != 0) {
+        perror("No se pudo generar nova.nov");
         liberar_ast(raiz_ast);
         tabla_liberar();
         return 1;
     }
-    printf("Archivo 'nova.nova' generado correctamente.\n");
+    printf("Archivo 'nova.nov' generado correctamente.\n");
 
     liberar_ast(raiz_ast);
     tabla_liberar();

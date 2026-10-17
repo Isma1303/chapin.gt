@@ -111,7 +111,7 @@ make test
 ```
 
 Si el programa no tiene errores, además del AST y la tabla se escribe el archivo
-`nova.nova` (ver sección 4).
+`nova.nov` (ver sección 4).
 
 ### Limpiar los artefactos generados
 
@@ -119,16 +119,16 @@ Si el programa no tiene errores, además del AST y la tabla se escribe el archiv
 make clean
 ```
 
-## 4. Traducción a Nova (`nova.nova`)
+## 4. Traducción a Nova (`nova.nov`)
 
 Además del análisis, `chapin` traduce el programa a **Nova**, el lenguaje del
 proyecto de `Assets/Proyecto-Nova/`. Si el archivo `.gt` no tiene errores
-léxicos, sintácticos ni semánticos, se escribe `nova.nova` en el directorio
+léxicos, sintácticos ni semánticos, se escribe `nova.nov` en el directorio
 actual:
 
 ```bash
 ./chapin tests/valido.gt
-# -> imprime el AST, la tabla de símbolos y "Archivo 'nova.nova' generado correctamente."
+# -> imprime el AST, la tabla de símbolos y "Archivo 'nova.nov' generado correctamente."
 ```
 
 El resultado lo puede procesar directamente el compilador de Nova:
@@ -136,12 +136,12 @@ El resultado lo puede procesar directamente el compilador de Nova:
 ```bash
 cd Assets/Proyecto-Nova
 make                 # genera el binario ./nova (requiere bison 3.x, flex y gcc)
-./nova ../../nova.nova
+./nova ../../nova.nov
 # -> Analisis sintactico correcto.
 ```
 
 Si el programa tiene errores, `chapin` falla (exit 1) y **no** se genera
-`nova.nova`.
+`nova.nov`.
 
 ### 4.1. Correspondencia Chapin → Nova
 
@@ -184,8 +184,8 @@ src/
   parser.y      Gramática (Bison): construye el AST y llena la tabla de símbolos
   ast.h / ast.c Nodos del AST y su impresión en árbol indentado
   symtab.h/.c   Tabla de símbolos (lista enlazada: nombre, tipo, línea de declaración)
-  codegen.h/.c  Traducción a Nova: recorre el AST y escribe nova.nova
-  main.c        Programa principal: abre el .gt, corre el parser, imprime AST y tabla, traduce a nova.nova
+  codegen.h/.c  Traducción a Nova: recorre el AST y escribe nova.nov
+  main.c        Programa principal: abre el .gt, corre el parser, imprime AST y tabla, traduce a nova.nov
 tests/
   valido.gt     Programa de ejemplo del contrato (sección 9) — debe compilar sin errores
   invalido.gt   Variante con un `;` faltante — debe rechazarse con error de sintaxis
@@ -207,7 +207,7 @@ tests/
   "suma numérica" de "concatenación" para *ambos* órdenes es, otra vez, trabajo de la fase de
   chequeo de tipos, no de la gramática.
 - **La traducción a Nova es una fase posterior a la validación:** `src/codegen.c` solo se ejecuta
-  cuando no hay errores, así que nunca produce un `nova.nova` a partir de un programa inválido.
+  cuando no hay errores, así que nunca produce un `nova.nov` a partir de un programa inválido.
   El AST no conserva paréntesis ni la distinción `Concat`/`Operacion`, pero ninguna de las dos
   cosas afecta al código Nova emitido: la precedencia se reconstruye envolviendo subexpresiones
   compuestas, y `+` con una cadena es válido en Nova en cualquiera de los dos órdenes.
